@@ -121,7 +121,7 @@ defaultView model =
     { title = "Url Interceptor"
     , body =
         [ text (String.concat [ "Hi ", model.name, " The current URL is: " ])
-        , p [] [ b [] [ text (Debug.toString (toRoute model.url)) ] ]
+        , p [] [ b [] [ text (routeToString (toRoute model.url)) ] ]
         , p [] [ b [] [ text (Url.toString model.url) ] ]
         , ul []
             [ viewLink "/home"
@@ -132,6 +132,18 @@ defaultView model =
             ]
         ]
     }
+
+
+routeToString route =
+    case route of
+        Home ->
+            "Home"
+
+        Profile ->
+            "Profile"
+
+        Review review ->
+            "Review"
 
 
 viewLink : String -> Html msg
